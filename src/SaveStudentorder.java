@@ -1,11 +1,18 @@
 public class SaveStudentorder
 {
     public static void main(String[] args) {
-        saveStudentOrder();
+        StudentOrder so = new StudentOrder();
+        so.hFirstName = "Александр";
+        so.hLastName = "Иванов";
+        so.wFirstName = "Галина";
+        so.wLastName = "Иванова";
+
+        long ans = saveStudentOrder(so);
+        System.out.println(ans);
     }
-    static void saveStudentOrder () {
-        System.out.println("saveStudentOrder is running");
-        System.out.println("saveStudentOrder is running");
-        System.out.println("saveStudentOrder is running");
+    static long saveStudentOrder (StudentOrder student) {
+        long answer = 199;
+        System.out.println("saveStudentOrder is running " + student.hLastName);
+        return answer;
     }
 }
