@@ -5,16 +5,27 @@ public class StudentOrderValidator //Первый алгоритм провер�
     }
 
     static void checkAll() {
+                                        // а. смотрим новые студенческие заявки
         StudentOrder so1 = readStudentOrder();
 
-        AnswerCityRegister cityAnswer = checkCityRegister(so1); // читаем студенческую заявку и пытаемся ее проверить
-        AnswerWedding wedAnswer = checkWeeding(so1);
-        AnswerChildren childAnswer = checkChildren(so1);
-        AnswerStudent studentAnswer = checkStudent(so1);
-        sendMail (so1);
-    }
+                                                        // 2. обработали студенческую заявку
+        while (so1 != null) {
 
-    static StudentOrder readStudentOrder () {
+
+                                        // б. читаем студенческую заявку и пытаемся ее проверить
+            AnswerWedding wedAnswer = checkWeeding(so1);
+            AnswerCityRegister cityAnswer = checkCityRegister(so1);
+            AnswerChildren childAnswer = checkChildren(so1);
+            AnswerStudent studentAnswer = checkStudent(so1);
+            sendMail (so1);
+
+            so1 = readStudentOrder(); // в. проверяем если новая студенческая заявка
+
+
+        }
+    }
+                                                        // 1. вычетали студенческую заявку
+    static StudentOrder readStudentOrder() {
         StudentOrder so2 = new StudentOrder();
         return  so2;
     }

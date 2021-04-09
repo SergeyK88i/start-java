@@ -1,5 +1,5 @@
 public class SaveStudentorder
-{
+{                                               //сохраняем данные пользователя
     public static void main(String[] args) {
         StudentOrder so = new StudentOrder();
         so.hFirstName = "Александр";
