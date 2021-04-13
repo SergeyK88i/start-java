@@ -1,4 +1,6 @@
+package edu.javacourse.studentorder.domain;
+
 public class AnswerCityRegister // тестирование метода проверки
 {
-    boolean success;
+    public boolean success;
 }
