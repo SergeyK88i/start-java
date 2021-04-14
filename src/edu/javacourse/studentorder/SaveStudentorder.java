@@ -6,10 +6,11 @@ import edu.javacourse.studentorder.domain.StudentOrder;
 public class SaveStudentorder
 {                                               //сохраняем данные пользователя
     public static void main(String[] args) {
-        StudentOrder so = new StudentOrder();
 
-        long ans = saveStudentOrder(so);
-        System.out.println(ans);
+        buildStudentOrder();
+//        StudentOrder so = new StudentOrder();
+//        long ans = saveStudentOrder(so);
+//        System.out.println(ans);
     }
     static long saveStudentOrder (StudentOrder student) {
         long answer = 199;
@@ -22,6 +23,9 @@ public class SaveStudentorder
         Adult husband = new Adult();
         husband.setGivenName("Andrei");
         so.setHusband(husband);
+
+        String ans = husband.getPersonString();
+        System.out.println(ans);
         return so;
     }
 }

@@ -9,11 +9,27 @@ import edu.javacourse.studentorder.validator.WeddingValidator;
 
 public class StudentOrderValidator //Первый алгоритм проверки данных
 {
+    private CityRegisterValidator cityRegisterVali;
+    private  WeddingValidator  weddingVal;
+    private ChildrenValidator childrenVal;
+    private StudentValidator studentVal;
+    private MailSender mailSender;
+
+    public StudentOrderValidator () {
+        cityRegisterVali = new CityRegisterValidator();
+        weddingVal = new WeddingValidator();
+        childrenVal = new ChildrenValidator();
+        studentVal = new StudentValidator();
+        mailSender = new MailSender();
+    }
+    //Создаем объект StudentOrderValidator и у этого объекта используем метод
     public static void main(String[] args) {
-        checkAll();
+        StudentOrderValidator sov = new StudentOrderValidator();
+        sov.checkAll();
+
     }
 
-    static void checkAll() {
+    public void checkAll() {
                                         // а. смотрим новые студенческие заявки
         while (true) {
         StudentOrder so1 = readStudentOrder();
@@ -39,38 +55,25 @@ public class StudentOrderValidator //Первый алгоритм провер�
         System.out.println("Финиш2");
     }
                                                         // 1. вычетали студенческую заявку
-    static StudentOrder readStudentOrder() {
+    public StudentOrder readStudentOrder() {
         StudentOrder so2 = new StudentOrder();
         return  so2;
     }
-    static AnswerCityRegister checkCityRegister(StudentOrder so) {
-        CityRegisterValidator crv1 = new CityRegisterValidator();
-        crv1.hostName = "Host1";
-        crv1.login = "Login1";
-
-
-        CityRegisterValidator crv2 = new CityRegisterValidator();
-        crv2.hostName = "Host2";
-        crv2.login = "Login2";
-
-        AnswerCityRegister ans1 = crv1.checkCityRegister(so);
-        AnswerCityRegister ans2 = crv1.checkCityRegister(so);
-        return ans1;
+    public AnswerCityRegister checkCityRegister(StudentOrder so) {
+       return cityRegisterVali.checkCityRegister(so);
 
 
     }
-    static AnswerWedding checkWeeding(StudentOrder so) {
-        WeddingValidator wd = new WeddingValidator();
-        return wd.checkWeeding(so);
+    public AnswerWedding checkWeeding(StudentOrder so) {
+        return weddingVal.checkWeeding(so);
     }
-    static AnswerChildren checkChildren(StudentOrder so) {
-        ChildrenValidator cv = new ChildrenValidator();
-        return cv.checkChildren(so);
+    public AnswerChildren checkChildren(StudentOrder so) {
+        return childrenVal.checkChildren(so);
     }
-    static AnswerStudent checkStudent(StudentOrder so) {
-        return new StudentValidator().checkStudent(so);
+    public AnswerStudent checkStudent(StudentOrder so) {
+        return studentVal.checkStudent(so);
     }
-    static void  sendMail(StudentOrder so) {
-        new MailSender().sendMail(so);
+    public void  sendMail(StudentOrder so) {
+        mailSender.sendMail(so);
     }
 }
