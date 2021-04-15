@@ -7,7 +7,7 @@ public class SaveStudentorder
 {                                               //сохраняем данные пользователя
     public static void main(String[] args) {
 
-        buildStudentOrder();
+        //buildStudentOrder();
 //        StudentOrder so = new StudentOrder();
 //        long ans = saveStudentOrder(so);
 //        System.out.println(ans);
@@ -18,14 +18,11 @@ public class SaveStudentorder
         return answer;
     }
 
-    static StudentOrder buildStudentOrder () {
+    public static StudentOrder buildStudentOrder (long id) {
         StudentOrder so = new StudentOrder();
-        Adult husband = new Adult();
-        husband.setGivenName("Andrei");
-        so.setHusband(husband);
+        so.setStudentorderID(id);
 
-        String ans = husband.getPersonString();
-        System.out.println(ans);
+
         return so;
     }
 }

@@ -30,35 +30,31 @@ public class StudentOrderValidator //Первый алгоритм провер�
     }
 
     public void checkAll() {
-                                        // а. смотрим новые студенческие заявки
-        while (true) {
-        StudentOrder so1 = readStudentOrder();
-            System.out.println("Старт");
-
-            if (so1 == null) {
-                break;
-            }
-
-
-                                        // б. читаем студенческую заявку и пытаемся ее проверить
-            AnswerWedding wedAnswer = checkWeeding(so1);
-            AnswerCityRegister cityAnswer = checkCityRegister(so1);
-            if ( cityAnswer.success == false) {
-                //continue;
-                break;
-            }
-            AnswerChildren childAnswer = checkChildren(so1);
-            AnswerStudent studentAnswer = checkStudent(so1);
-            sendMail (so1);
-
+        StudentOrder[] soArray = readStudentOrders(); //2.читаем студенческие заявки
+        for (int c = 0; c < soArray.length; c++) {
+            System.out.println();
+            checkOneOrder(soArray[c]);
         }
-        System.out.println("Финиш2");
     }
-                                                        // 1. вычетали студенческую заявку
-    public StudentOrder readStudentOrder() {
-        StudentOrder so2 = new StudentOrder();
-        return  so2;
+
+    public StudentOrder[] readStudentOrders() {     //1.создали студенческие заявки
+        StudentOrder[] soArray = new StudentOrder[1];
+        for ( int c = 0; c < soArray.length; c++) {
+            soArray[c] = SaveStudentorder.buildStudentOrder(c); //buildStudentOrder строить студенческую заявку
+        }
+        return soArray;
     }
+
+    public void checkOneOrder (StudentOrder so1) { // 3.проверяем студенческие заявки
+
+        AnswerCityRegister cityAnswer = checkCityRegister(so1);
+        AnswerWedding wedAnswer = checkWeeding(so1);
+        AnswerChildren childAnswer = checkChildren(so1);
+        AnswerStudent studentAnswer = checkStudent(so1);
+        sendMail (so1);
+    }
+
+
     public AnswerCityRegister checkCityRegister(StudentOrder so) {
        return cityRegisterVali.checkCityRegister(so);
 
